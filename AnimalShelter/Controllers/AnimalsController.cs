@@ -121,5 +121,15 @@ namespace AnimalShelter.Controllers
       queryPopular = queryPopular.Where(entry => entry.AnimalType == popularType);
       return await queryPopular.ToListAsync();
     }
+
+    [HttpGet("random")]
+    public ActionResult<Animal> GetRandom()
+    {
+      Random rand = new Random();
+      List<Animal> animalsList = _db.Animals.ToList();
+      int randInt = rand.Next(0,animalsList.Count());
+      Animal randAnimal = animalsList[randInt];
+      return randAnimal;
+    }
   }
 }
