@@ -117,6 +117,9 @@ namespace AnimalShelter.Controllers
           popularType = typeGroup.Key;
         }
       }
+      IQueryable<Animal> queryPopular = _db.Animals.AsQueryable();
+      queryPopular = queryPopular.Where(entry => entry.AnimalType == popularType);
+      return await queryPopular.ToListAsync();
     }
   }
 }
