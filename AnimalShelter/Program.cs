@@ -36,6 +36,11 @@ builder.Services.AddVersionedApiExplorer(setup =>
   setup.GroupNameFormat = "'v'VVV";
   setup.SubstituteApiVersionInUrl = true;
 });
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+
 var app = builder.Build();
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 

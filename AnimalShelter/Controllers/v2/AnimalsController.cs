@@ -3,10 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using AnimalShelter.Models;
 using System.Linq;
 
-namespace AnimalShelter.Controllers
+namespace AnimalShelter.Controllers.v2
 {
-  [Route("api/[controller]")]
   [ApiController]
+  [Route("api/v{version:apiVersion}/[controller]")]
+  [ApiVersion("2.0")]
   public class AnimalsController : ControllerBase
   {
     private readonly AnimalShelterContext _db;
