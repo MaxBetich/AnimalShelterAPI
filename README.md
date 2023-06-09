@@ -66,6 +66,15 @@ https://localhost:5001/api/Animals/1
   "animalAge": 11
 }
 ```
+
+#### Path Parameters
+
+**Parameter** || **Type** || **Default** || **Required** || **Description**
+
+animalType   ||     string  ||      none     ||      false     ||     Returns matches based on type of animal
+
+animalAge    ||      int    ||      none     ||      false     ||     Returns matches based on age of animal
+
 ## Known Bugs
 
 None
