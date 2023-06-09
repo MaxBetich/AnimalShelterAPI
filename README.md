@@ -43,18 +43,18 @@ Base URL: [https://localhost:5001]
 
 #### HTTP Request Structure
 
-Get /api/Animals/random
-Get /api/Animals/popular
-Delete /api/Animals/{id}
-Put /api/Animals/{id}
-Get /api/Animals/{id}
-Get /api/Animals
-Post /api/Animals
+Get /api/v{versionNumber}/Animals/random
+Get /api/v{versionNumber}/Animals/popular
+Delete /api/v{versionNumber}/Animals/{id}
+Put /api/v{versionNumber}/Animals/{id}
+Get /api/v{versionNumber}/Animals/{id}
+Get /api/v{versionNumber}/Animals
+Post /api/v{versionNumber}/Animals
 
 #### Example Query
 
 ```json
-https://localhost:5001/api/Animals/1
+https://localhost:5001/api/v2/Animals/1
 ```
 #### Sample JSON Response
 
