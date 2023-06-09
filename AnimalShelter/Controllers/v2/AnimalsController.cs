@@ -18,7 +18,7 @@ namespace AnimalShelter.Controllers.v2
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Animal>>> Get(string animalType, int animalAge)
+    public async Task<ActionResult<IEnumerable<Animal>>> Get(string animalType, int animalAge, int pageNumber, int pageSize)
     {
       IQueryable<Animal> query = _db.Animals.AsQueryable();
       if (animalType != null)
@@ -30,7 +30,10 @@ namespace AnimalShelter.Controllers.v2
       {
         query = query.Where(entry => entry.AnimalAge == animalAge);
       }
-
+      if (pageNumber > 0 && pageSize > 0)
+      {
+        query = query.Skip((pageNumber-1)*pageSize).Take(pageSize);
+      }
       return await query.ToListAsync();
     }
 
@@ -104,7 +107,7 @@ namespace AnimalShelter.Controllers.v2
     }
 
     [HttpGet("popular")]
-    public async Task<ActionResult<IEnumerable<Animal>>> GetPopular()
+    public async Task<ActionResult<IEnumerable<Animal>>> GetPopular(int pageNumber, int pageSize)
     {
       List<Animal> animalList = _db.Animals.ToList();
       IEnumerable<IGrouping<string,int>> query = animalList.GroupBy(animal => animal.AnimalType, animal => animal.AnimalAge);
@@ -120,6 +123,10 @@ namespace AnimalShelter.Controllers.v2
       }
       IQueryable<Animal> queryPopular = _db.Animals.AsQueryable();
       queryPopular = queryPopular.Where(entry => entry.AnimalType == popularType);
+      if (pageNumber > 0 && pageSize > 0)
+      {
+        queryPopular = queryPopular.Skip((pageNumber-1)*pageSize).Take(pageSize); 
+      }
       return await queryPopular.ToListAsync();
     }
 

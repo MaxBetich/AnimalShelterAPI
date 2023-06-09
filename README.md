@@ -37,6 +37,10 @@ This application is an api that functions as an archive for different animals be
 
 ## API Documentation
 
+### Versioning
+
+The application utilizes versioning to support stable feature changes. V1 represents the original functional version of the code, while V2 implements paging support for controlling page sizes.
+
 ### Endpoints
 
 Base URL: [https://localhost:5001]
