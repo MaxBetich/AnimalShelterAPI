@@ -86,5 +86,37 @@ namespace AnimalShelter.Controllers
     {
       return _db.Animals.Any(e => e.AnimalId == id);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+      Animal animal = await _db.Animals.FindAsync(id);
+      if (animal != null)
+      {
+        return NotFound();
+      }
+
+      _db.Animals.Remove(animal);
+      await _db.SaveChangesAsync();
+
+      return NoContent();
+    }
+
+    [HttpGet("popular")]
+    public async Task<ActionResult<IEnumerable<Animal>>> GetPopular()
+    {
+      List<Animal> animalList = _db.Animals.ToList();
+      IEnumerable<IGrouping<string,int>> query = animalList.GroupBy(animal => animal.AnimalType, animal => animal.AnimalAge);
+      string popularType = "";
+      int maxCount = -1;
+      foreach (IGrouping<string,int> typeGroup in query)
+      {
+        if(maxCount <= typeGroup.Count())
+        {
+          maxCount = typeGroup.Count();
+          popularType = typeGroup.Key;
+        }
+      }
+    }
   }
 }
