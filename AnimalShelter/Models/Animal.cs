@@ -10,6 +10,7 @@ namespace AnimalShelter.Models
     [Required]
     public string AnimalName { get; set; }
     [Required]
+    [Range(1, 255, ErrorMessage = "Please enter an age between 1 and 255")]
     public int AnimalAge {get;set;}
   }
 }
