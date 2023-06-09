@@ -41,19 +41,28 @@ This application is an api that functions as an archive for different animals be
 
 The application utilizes versioning to support stable feature changes. V1 represents the original functional version of the code, while V2 implements paging support for controlling page sizes.
 
+### Pagination
+
+By default the application will return all valid results when making a GET request. Optionally, the number of results and desired page to be displayed can be adjusted by providing a pageNumber and pageSize parameter when making the request.
+
+#### Example Query
+```json
+https://localhost:5001/api/v2/Animals?pageNumber=2&pageSize=2
+```
+
 ### Endpoints
 
-Base URL: [https://localhost:5001]
+Base URL: https://localhost:5001
 
 #### HTTP Request Structure
 
-Get /api/v{versionNumber}/Animals/random
-Get /api/v{versionNumber}/Animals/popular
-Delete /api/v{versionNumber}/Animals/{id}
-Put /api/v{versionNumber}/Animals/{id}
-Get /api/v{versionNumber}/Animals/{id}
-Get /api/v{versionNumber}/Animals
-Post /api/v{versionNumber}/Animals
+* Get /api/v{versionNumber}/Animals/random
+* Get /api/v{versionNumber}/Animals/popular
+* Delete /api/v{versionNumber}/Animals/{id}
+* Put /api/v{versionNumber}/Animals/{id}
+* Get /api/v{versionNumber}/Animals/{id}
+* Get /api/v{versionNumber}/Animals
+* Post /api/v{versionNumber}/Animals
 
 #### Example Query
 
@@ -72,13 +81,17 @@ https://localhost:5001/api/v2/Animals/1
 ```
 
 #### Path Parameters
-
+```json
 **Parameter** || **Type** || **Default** || **Required** || **Description**
 
-animalType   ||     string  ||      none     ||      false     ||     Returns matches based on type of animal
+animalType    ||  string  ||     none    ||     false    ||  Returns matches based on type of animal
 
-animalAge    ||      int    ||      none     ||      false     ||     Returns matches based on age of animal
+animalAge     ||   int    ||     none    ||     false    ||  Returns matches based on age of animal
 
+pageSize      ||   int    ||     none    ||     false    ||  Controls the number of results per page when used in conjunction with pageNumber
+
+pageNumber    ||   int    ||     none    ||     false    ||  Controls which page of results to return when used in conjunction with pageSize
+```
 ## Known Bugs
 
 None
