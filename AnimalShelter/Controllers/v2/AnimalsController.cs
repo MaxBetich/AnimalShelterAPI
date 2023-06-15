@@ -95,7 +95,7 @@ namespace AnimalShelter.Controllers.v2
     public async Task<IActionResult> Delete(int id)
     {
       Animal animal = await _db.Animals.FindAsync(id);
-      if (animal != null)
+      if (animal == null)
       {
         return NotFound();
       }
