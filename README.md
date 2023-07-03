@@ -1,4 +1,4 @@
-# **Sweets and Treats**
+# **Animal Shelter**
 
 ### By _Max Betich_
 
